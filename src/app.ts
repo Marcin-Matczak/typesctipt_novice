@@ -1,13 +1,31 @@
-const butonElement = document.querySelector("button");
+/*<li>
+<label for="task-1">Learn TypeScript</label>
+<input type="checkbox" id="task-1" name="Learn TypeScript" />
+</li>*/
 
-const calculatePrice = (orginalPrice: number, hasDiscount: boolean) => {
-  return hasDiscount ? orginalPrice * 0.8 : orginalPrice;
+const taskNameInputElement: HTMLInputElement = document.querySelector("#name");
+const addButtonElement: HTMLButtonElement = document.querySelector(".add");
+const taskContainerElement: HTMLElement = document.querySelector(".tasks");
+
+const tasks: string[] = ["Learn TypeScript","Book plane flight","Learn for the exam"];
+
+const render = () => {
+    taskContainerElement.innerHTML = "";
+    tasks.forEach((task) => {
+        const taskElement: HTMLElement = document.createElement("li");
+        taskElement.innerText = task;
+        taskContainerElement.appendChild(taskElement);
+    });
 };
 
-butonElement.addEventListener("click", () => {
-  const orginalPrice: number = 50;
-  const hasDiscount: boolean = new URLSearchParams(window.location.search).get(
-    "discount") === "true";
- 
-  console.log(calculatePrice(orginalPrice, hasDiscount));
-});
+const addTask = (task: string) => {
+    tasks.push(task);
+}
+
+addButtonElement.addEventListener('click', (event: Event) => {
+    event.preventDefault();
+    tasks.push(taskNameInputElement.value);
+    render();
+})
+
+render();
