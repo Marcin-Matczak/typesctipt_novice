@@ -1,0 +1,21 @@
+{
+  "name": "typesctipt_novice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marcin-Matczak/typesctipt_novice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marcin-Matczak/typesctipt_novice/issues"
+  },
+  "homepage": "https://github.com/Marcin-Matczak/typesctipt_novice#readme"
+}
