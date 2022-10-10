@@ -1,24 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>TypeScript Novice</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <form action="" class="container" autocomplete="off">
-        <label for="name">Task:</label>
-        <input type="text" id="name" value=""/>
-        <button class="add">Add</button>
-        <p>ToDo:</p>
-        <br/>
-        <ul class="tasks"></ul>
+      <label for="name">Task:</label>
+      <input type="text" id="name" value="" />
+      <p>Choose caregory:</p>
+      <ul class="categories">
+        <li>
+          <input
+            type="radio"
+            name="category"
+            value="general"
+            id="category-general"
+          />
+          <label for="category-general">general</label>
+        </li>
+        <li>
+          <input
+            type="radio"
+            name="category"
+            value="hobby"
+            id="category-hobby"
+          />
+          <label for="category-hobby">hobby</label>
+        </li>
+        <li>
+          <input type="radio" name="category" value="work" id="category-work" />
+          <label for="category-work">work</label>
+        </li>
+        <li>
+          <input
+            type="radio"
+            name="category"
+            value="school"
+            id="category-school"
+          />
+          <label for="category-school">school</label>
+        </li>
+      </ul>
+      <button class="add">Add</button>
+      <p>ToDo:</p>
+      <br />
+      <ul class="tasks"></ul>
     </form>
-    
 
     <script src="dist/app.js"></script>
-</body>
+  </body>
 </html>

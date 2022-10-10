@@ -29,7 +29,7 @@ body {
 
 input{
     display: block;
-    margin: 12px 0;
+    margin: 20px 0;
     padding: 12px 16px;
     width: 100%;
 }
@@ -40,7 +40,7 @@ button {
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    margin: 12px 0;
+    margin: 25px 0;
     padding: 12px 16px;
     transition: border-color 0.3s, background 0.3s;
     width: 100%;
@@ -58,5 +58,41 @@ button:hover {
 .tasks input {
    position: relative;
    bottom: 30px;
-   left: 70px;
+   left: 100px;
+}
+
+.school {
+    color:rgb(62, 5, 116);
+    list-style: circle;
+}
+
+.work {
+    color: rgb(128, 93, 7);
+    list-style: square;
+}
+
+.hobby {
+    color: rgb(63, 105, 1);
+    list-style: square;
+}
+
+.categories {   
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+}
+
+.categories ul {
+    justify-content: center;
+}
+
+.categories li {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    margin-right: 16px;
+}
+
+.categories label {
+    padding: 8px;
 }

@@ -2,22 +2,38 @@ const taskNameInputElement: HTMLInputElement = document.querySelector("#name");
 const addButtonElement: HTMLButtonElement = document.querySelector(".add");
 const taskContainerElement: HTMLElement = document.querySelector(".tasks");
 
-// ustawienie typowania w tablicy zawierajacej obiekty
-const tasks: {
+// interfejsy - reuzywalne typy
+
+interface Task {
     name: string;
     done: boolean;
-}[] = [
+    // oprional properties "?" - obiekty task moga miec wlasciwosc category, ale nie musza (czyli TS nie wyrzuci bledu jesli zabrabraknie lub dodamy ta wlasciwosc)
+    category?: string;
+}
+
+const categories: string[] = ["general", "work", "school", "hobby"];
+
+// ustawienie typowania w tablicy zawierajacej obiekty
+const tasks: Task[] = [
     {
         name: "Learn TypeScript",
         done: false,
+        category: "general",
     },
     {
         name: "Book plane flight",
         done: true,
+        category: "work",
     },
     {
         name: "Learn for the exam",
         done: false,
+        category: "school",
+    },
+    {
+        name: "Play guitar",
+        done: false,
+        category: "hobby",
     },
 ];
 
@@ -30,7 +46,12 @@ const render = () => {
             <input type="checkbox" id="task-1" name="Learn TypeScript" />
         </li>*/
 
-        const taskElement: HTMLElement = document.createElement("li");  
+        const taskElement: HTMLElement = document.createElement("li");
+
+        if (task.category) {
+            taskElement.classList.add(task.category);
+        }
+        
         const id: string = `task-${index}`;
 
         const labelElement: HTMLLabelElement = document.createElement("label");        
@@ -55,13 +76,14 @@ const render = () => {
     });
 };
 
-const addTask = (taskName: string) => {
-    tasks.push({name: taskName, done: false});
+// zamiast {title: string, done: boolean} mozemy opisac zdefiniowanym wczesniej interfejse Task
+const addTask = (task: Task) => {
+    tasks.push(task);
 }
 
 addButtonElement.addEventListener('click', (event: Event) => {
     event.preventDefault();
-    addTask(taskNameInputElement.value);
+    addTask({name: taskNameInputElement.value, done: false});
     render();
 })
 

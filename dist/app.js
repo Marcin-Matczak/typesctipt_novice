@@ -1,19 +1,28 @@
 const taskNameInputElement = document.querySelector("#name");
 const addButtonElement = document.querySelector(".add");
 const taskContainerElement = document.querySelector(".tasks");
+const categories = ["general", "work", "school", "hobby"];
 // ustawienie typowania w tablicy zawierajacej obiekty
 const tasks = [
     {
         name: "Learn TypeScript",
         done: false,
+        category: "general",
     },
     {
         name: "Book plane flight",
         done: true,
+        category: "work",
     },
     {
         name: "Learn for the exam",
         done: false,
+        category: "school",
+    },
+    {
+        name: "Play guitar",
+        done: false,
+        category: "hobby",
     },
 ];
 const render = () => {
@@ -24,6 +33,9 @@ const render = () => {
             <input type="checkbox" id="task-1" name="Learn TypeScript" />
         </li>*/
         const taskElement = document.createElement("li");
+        if (task.category) {
+            taskElement.classList.add(task.category);
+        }
         const id = `task-${index}`;
         const labelElement = document.createElement("label");
         labelElement.innerHTML = task.name;
@@ -42,12 +54,13 @@ const render = () => {
         taskContainerElement.appendChild(taskElement);
     });
 };
-const addTask = (taskName) => {
-    tasks.push({ name: taskName, done: false });
+// zamiast {title: string, done: boolean} mozemy opisac zdefiniowanym wczesniej interfejse Task
+const addTask = (task) => {
+    tasks.push(task);
 };
 addButtonElement.addEventListener('click', (event) => {
     event.preventDefault();
-    addTask(taskNameInputElement.value);
+    addTask({ name: taskNameInputElement.value, done: false });
     render();
 });
 render();
