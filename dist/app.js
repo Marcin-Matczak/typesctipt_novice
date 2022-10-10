@@ -1,6 +1,9 @@
 const taskNameInputElement = document.querySelector("#name");
 const addButtonElement = document.querySelector(".add");
 const taskContainerElement = document.querySelector(".tasks");
+const categoriesContainerElement = document.querySelector(".categories");
+let selectedCategory; // mozna dodac selectedRadioelement.value as Category - type casting
+// type literal - zawezona deklaracja np. let type: "general" | "school" | "hobby" etc.
 const categories = ["general", "work", "school", "hobby"];
 // ustawienie typowania w tablicy zawierajacej obiekty
 const tasks = [
@@ -54,13 +57,44 @@ const render = () => {
         taskContainerElement.appendChild(taskElement);
     });
 };
+const renderCategories = () => {
+    /*<li>
+        <input
+            type="radio"
+            name="category"
+            value="general"
+            id="category-general"
+        />
+        <label for="category-general">general</label>
+  </li>*/
+    categories.forEach((category) => {
+        const categoryElement = document.createElement("li");
+        const radioInputElement = document.createElement("input");
+        radioInputElement.type = "radio";
+        radioInputElement.name = "category";
+        radioInputElement.value = category;
+        radioInputElement.id = `category-${category}`;
+        radioInputElement.addEventListener("change", () => {
+            selectedCategory = category;
+        });
+        const labelElement = document.createElement("label");
+        labelElement.setAttribute("for", `category-${category}`);
+        labelElement.innerText = category;
+        categoryElement.appendChild(radioInputElement);
+        categoryElement.appendChild(labelElement);
+        categoriesContainerElement.appendChild(categoryElement);
+    });
+};
 // zamiast {title: string, done: boolean} mozemy opisac zdefiniowanym wczesniej interfejse Task
 const addTask = (task) => {
     tasks.push(task);
 };
 addButtonElement.addEventListener('click', (event) => {
+    // wyszukujemy input typu radio, ktory jest zaznaczony
+    //const selectedRadioelement: HTMLInputElement = document.querySelector("input[type='radio']:checked");
     event.preventDefault();
-    addTask({ name: taskNameInputElement.value, done: false });
+    addTask({ name: taskNameInputElement.value, done: false, category: selectedCategory });
     render();
 });
+renderCategories();
 render();
