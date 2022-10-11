@@ -4,7 +4,8 @@
         "rootDir": "./src",
         // pliki wyjsciowe po przekompilowaniu (JS) beda w folderze dist 
         "outDir": "./dist",
-        // wyiowy plik JS bedzie dzialal na starszych przegladarkach przy ES3
-        "target": "ES2015"
+        // wyjsciowy plik JS bedzie dzialal na starszych przegladarkach przy ES3
+        "target": "ES2015",
+        "module": "ES2015"
     }
 }
