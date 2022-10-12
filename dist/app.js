@@ -34,12 +34,15 @@ const tasks = [
 const addTask = (task) => {
     tasks.push(task);
 };
+const updateSelectedCategory = (newCategory) => {
+    selectedCategory = newCategory;
+};
+// wyszukujemy input typu radio, ktory jest zaznaczony
+//const selectedRadioelement: HTMLInputElement = document.querySelector("input[type='radio']:checked");
 addButtonElement.addEventListener('click', (event) => {
-    // wyszukujemy input typu radio, ktory jest zaznaczony
-    //const selectedRadioelement: HTMLInputElement = document.querySelector("input[type='radio']:checked");
     event.preventDefault();
     addTask({ name: taskNameInputElement.value, done: false, category: selectedCategory });
     render(tasks, taskContainerElement);
 });
-renderCategories(categories, categoriesContainerElement, selectedCategory);
+renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 render(tasks, taskContainerElement);
