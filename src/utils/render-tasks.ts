@@ -1,4 +1,4 @@
-import { Task } from "../types/tyles";
+import { Task } from "../types/types";
 
 const render = (tasks: Task[], taskContainerElement: HTMLElement) => {
     taskContainerElement.innerHTML = "";

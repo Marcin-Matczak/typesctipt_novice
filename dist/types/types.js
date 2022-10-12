@@ -1,0 +1,2 @@
+// interfejsy - reuzywalne typy
+export {};

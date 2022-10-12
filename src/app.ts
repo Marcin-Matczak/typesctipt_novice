@@ -1,4 +1,4 @@
-import { Task, Category } from "./types/tyles.js";
+import { Task, Category } from "./types/types";
 import render from "./utils/render-tasks.js";
 import renderCategories from "./utils/render-categories.js";
 
@@ -54,3 +54,25 @@ addButtonElement.addEventListener('click', (event: Event) => {
 
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 render(tasks, taskContainerElement);
+
+
+
+
+
+// type narrowing and type unknown - additional example
+// sposob na ograniczanie nieznanyc wartosci
+
+/*
+let get = (response: unknown) => response;
+
+const logFixed =(v: number) => {
+    console.log(v.toFixed());
+}
+
+logFixed(2.1);
+
+let value = get(2.3);
+if (typeof value === "number") {
+    logFixed(value);
+}
+*/
