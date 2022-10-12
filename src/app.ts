@@ -1,4 +1,4 @@
-import { Task, Category } from "./types/types";
+import { Task, Category } from "./types/types.js";
 import render from "./utils/render-tasks.js";
 import renderCategories from "./utils/render-categories.js";
 
@@ -9,30 +9,30 @@ const categoriesContainerElement: HTMLElement = document.querySelector(".categor
 
 let selectedCategory: Category; // mozna dodac selectedRadioelement.value as Category - type casting
 
-// type literal - zawezona deklaracja np. let type: "general" | "school" | "hobby" etc.
-const categories: Category[] = ["general", "work", "school", "hobby"];
+// type literal - zawezona deklaracja np. let type: "general" | "school" | "hobby" etc. // ZAMIENIONE NA ENUMY
+const categories: Category[] = [Category.GENERAL, Category.WORK, Category.SCHOOL, Category.HOBBY];
 
 // ustawienie typowania w tablicy zawierajacej obiekty
 const tasks: Task[] = [
     {
         name: "Learn TypeScript",
         done: false,
-        category: "general",
+        category: Category.GENERAL,
     },
     {
         name: "Book plane flight",
         done: true,
-        category: "work",
+        category: Category.WORK
     },
     {
         name: "Learn for the exam",
         done: false,
-        category: "school",
+        category: Category.SCHOOL,
     },
     {
         name: "Play guitar",
         done: false,
-        category: "hobby",
+        category: Category.HOBBY,
     },
 ];
 

@@ -1,4 +1,4 @@
-import { Category } from "../types/types";
+import { Category } from "../types/types.js";
 
  /*<li>
       <input
@@ -11,14 +11,14 @@ import { Category } from "../types/types";
   </li>*/
 
 const handleCategoryChange = (category: Category) => {
-  if(category === "general"){
+  if(category === Category.GENERAL){
     console.log("GENERAL");
-  } else if (category === "school") {
+  } else if (category === Category.SCHOOL) {
     document.body.style.background = "silver";
-  } else if (category === "work") {
+  } else if (category === Category.WORK) {
     console.log("Zmiana na work");
     alert("WORK");
-  } else if (category === "hobby") {
+  } else if (category === Category.HOBBY) {
     alert("MY HOBBY");
     document.body.style.background = "magenta";
   } else {
