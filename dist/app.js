@@ -1,6 +1,7 @@
-import { Category } from "./types/types.js";
+import { Task, Category } from "./types/types.js";
 import render from "./utils/render-tasks.js";
 import renderCategories from "./utils/render-categories.js";
+import TaskClass from "./classes/class.js";
 const taskNameInputElement = document.querySelector("#name");
 const addButtonElement = document.querySelector(".add");
 const taskContainerElement = document.querySelector(".tasks");
@@ -10,26 +11,10 @@ let selectedCategory; // mozna dodac selectedRadioelement.value as Category - ty
 const categories = [Category.GENERAL, Category.WORK, Category.SCHOOL, Category.HOBBY];
 // ustawienie typowania w tablicy zawierajacej obiekty
 const tasks = [
-    {
-        name: "Learn TypeScript",
-        done: false,
-        category: Category.GENERAL,
-    },
-    {
-        name: "Book plane flight",
-        done: true,
-        category: Category.WORK
-    },
-    {
-        name: "Learn for the exam",
-        done: false,
-        category: Category.SCHOOL,
-    },
-    {
-        name: "Play guitar",
-        done: false,
-        category: Category.HOBBY,
-    },
+    new Task("Learn TypeScript", false, Category.GENERAL),
+    new Task("Book plane flight", true, Category.WORK),
+    new Task("Learn for the exam", false, Category.SCHOOL),
+    new Task("Play guitar", false, Category.HOBBY),
 ];
 // zamiast {title: string, done: boolean} mozemy opisac zdefiniowanym wczesniej interfejse Task
 const addTask = (task) => {
@@ -42,16 +27,19 @@ const updateSelectedCategory = (newCategory) => {
 //const selectedRadioelement: HTMLInputElement = document.querySelector("input[type='radio']:checked");
 addButtonElement.addEventListener('click', (event) => {
     event.preventDefault();
-    addTask({ name: taskNameInputElement.value, done: false, category: selectedCategory });
+    const newTask = new Task(taskNameInputElement.value, false, selectedCategory);
+    addTask(newTask);
+    newTask.logCreationDate("! ! !");
     render(tasks, taskContainerElement);
 });
 const task = ["Send the status of workflow", Category.WORK, false];
 const taskName = task[0];
 const taskCategory = task[1];
 const taskDoneStatus = task[2];
-addTask({ name: taskName, category: taskCategory, done: taskDoneStatus });
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 render(tasks, taskContainerElement);
+const taskClassInstance = new TaskClass("Zadanie z constructora", false, Category.SCHOOL);
+taskClassInstance.logCreationDate("!");
 // type narrowing and type unknown - additional example
 // sposob na ograniczanie nieznanyc wartosci
 /*

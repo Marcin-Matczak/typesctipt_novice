@@ -1,6 +1,7 @@
 import { Task, Category } from "./types/types.js";
 import render from "./utils/render-tasks.js";
 import renderCategories from "./utils/render-categories.js";
+import TaskClass  from "./classes/class.js";
 
 const taskNameInputElement: HTMLInputElement = document.querySelector("#name");
 const addButtonElement: HTMLButtonElement = document.querySelector(".add");
@@ -14,26 +15,10 @@ const categories: Category[] = [Category.GENERAL, Category.WORK, Category.SCHOOL
 
 // ustawienie typowania w tablicy zawierajacej obiekty
 const tasks: Task[] = [
-    {
-        name: "Learn TypeScript",
-        done: false,
-        category: Category.GENERAL,
-    },
-    {
-        name: "Book plane flight",
-        done: true,
-        category: Category.WORK
-    },
-    {
-        name: "Learn for the exam",
-        done: false,
-        category: Category.SCHOOL,
-    },
-    {
-        name: "Play guitar",
-        done: false,
-        category: Category.HOBBY,
-    },
+    new Task("Learn TypeScript", false,Category.GENERAL),
+    new Task("Book plane flight", true,Category.WORK),
+    new Task("Learn for the exam", false,Category.SCHOOL),
+    new Task("Play guitar", false,Category.HOBBY),
 ];
 
 // zamiast {title: string, done: boolean} mozemy opisac zdefiniowanym wczesniej interfejse Task
@@ -48,7 +33,9 @@ const updateSelectedCategory = (newCategory: Category) => {
  //const selectedRadioelement: HTMLInputElement = document.querySelector("input[type='radio']:checked");
 addButtonElement.addEventListener('click', (event: Event) => {
     event.preventDefault();
-    addTask({name: taskNameInputElement.value, done: false, category: selectedCategory});
+    const newTask: Task =  new Task(taskNameInputElement.value, false, selectedCategory)
+    addTask(newTask);
+    newTask.logCreationDate("! ! !");
     render(tasks, taskContainerElement);
 });
 
@@ -62,12 +49,13 @@ const taskName = task[0];
 const taskCategory = task[1];
 const taskDoneStatus = task[2];
 
-addTask({name: taskName, category: taskCategory, done: taskDoneStatus});
-
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 render(tasks, taskContainerElement);
 
 
+const taskClassInstance = new TaskClass("Zadanie z constructora", false, Category.SCHOOL);
+
+taskClassInstance.logCreationDate("!");
 
 
 

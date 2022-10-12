@@ -1,13 +1,23 @@
 // interfejsy - reuzywalne typy
 
-export interface Task {
-    name: string;
-    done: boolean;
-    // opcional properties "?" - obiekty task moga miec wlasciwosc category, ale nie musza (czyli TS nie wyrzuci bledu jesli zabrabraknie lub dodamy ta wlasciwosc)
-    // union type, zbior dwoch roznych typow np. string | numer
-    category?: Category;
-};
+export class Task {
+    public name: string;
+    public done: boolean;
+    public category?: Category;
 
+    private createdAt: Date;
+
+    constructor(name: string, done: boolean, category: Category) {
+      this.name = name;
+      this.done = done;
+      this.category = category;
+      this.createdAt = new Date();
+    }
+
+    logCreationDate(extra: string){
+      console.log(`Task created at ${this.createdAt} ${extra || ""}`);
+    }
+};
 
 export enum Category{
     GENERAL = "general",
@@ -15,7 +25,6 @@ export enum Category{
     SCHOOL = "school",
     HOBBY = "hobby",
   };
-
 
 
 // wartosci czysto stringowe lub numerycne mozemy zastepowac ENUMAMI
