@@ -45,6 +45,11 @@ addButtonElement.addEventListener('click', (event) => {
     addTask({ name: taskNameInputElement.value, done: false, category: selectedCategory });
     render(tasks, taskContainerElement);
 });
+const task = ["Send the status of workflow", Category.WORK, false];
+const taskName = task[0];
+const taskCategory = task[1];
+const taskDoneStatus = task[2];
+addTask({ name: taskName, category: taskCategory, done: taskDoneStatus });
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 render(tasks, taskContainerElement);
 // type narrowing and type unknown - additional example

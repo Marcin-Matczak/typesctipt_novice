@@ -52,6 +52,18 @@ addButtonElement.addEventListener('click', (event: Event) => {
     render(tasks, taskContainerElement);
 });
 
+// Tuple
+
+type TaskAsTuple = [string, Category, boolean];
+
+const task: TaskAsTuple = ["Send the status of workflow", Category.WORK, false];
+
+const taskName = task[0];
+const taskCategory = task[1];
+const taskDoneStatus = task[2];
+
+addTask({name: taskName, category: taskCategory, done: taskDoneStatus});
+
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 render(tasks, taskContainerElement);
 
